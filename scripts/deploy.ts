@@ -8,6 +8,7 @@ async function main() {
   console.log("Deploying contracts with the account:", owner.address);
 
   const Vault = await ethers.getContractFactory("InsecureEtherVault");
+  const Vault = await ethers.getContractFactory("FixedEtherVault");
   vault = await Vault.deploy();
   vaultAddress = await vault.getAddress();
   console.log("Vault address:", vaultAddress);

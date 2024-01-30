@@ -7,7 +7,8 @@ async function main() {
   let vault;
   const [owner] = await ethers.getSigners();
   vault = await ethers.getContractAt(
-    "InsecureEtherVault", 
+    //"InsecureEtherVault", 
+	"FixedEtherVault",
     "0x1613beB3B2C4f22Ee086B2b38C1476A3cE7f78E8",  
     // make sure this address is the address you just deployed
     owner
