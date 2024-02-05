@@ -36,8 +36,17 @@ async function main() {
   console.log("attack contract balance: ", await vault.getUserBalance(await attack.getAddress()));
 
   console.log("--- attacker contract withdraw ---");
-  const txn3 = await attack.connect(attacker).attack();
-  await txn3.wait(5);
+  try
+  {
+	  const txn3 = await attack.connect(attacker).attack();
+	  await txn3.wait(5);
+  }
+  catch(error) 
+  {
+	  console.error("--- ERROR ---");
+	  console.error(error);
+	  console.error("-------------");
+  }
   console.log("vault balance: ", await vault.connect(attacker).getEtherBalance());
   console.log("owner balance: ", await vault.getUserBalance(owner.address));
   console.log("attack contract balance: ", await vault.getUserBalance(await attack.getAddress()));
